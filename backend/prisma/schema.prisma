@@ -1,0 +1,105 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x", "linux-musl"]
+}
+
+model Usuario {
+  id                 String               @id @default(uuid()) @db.Char(40)
+  nome               String               @db.VarChar(100)
+  email              String               @unique @db.VarChar(100)
+  senha              String               @db.VarChar(100)
+  createdAt          DateTime             @default(now()) @map("created_at")
+  updatedAt          DateTime             @updatedAt @map("updated_at")
+  unidadeDispositivo UnidadeDispositivo[]
+  comodo             Comodo[]
+
+  @@map("usuario")
+}
+
+model UnidadeDispositivo {
+  id            String          @id @default(uuid()) @db.Char(40)
+  descricao     String          @db.VarChar(100)
+  status        Boolean         @default(false)
+  createdAt     DateTime        @default(now()) @map("created_at")
+  updatedAt     DateTime        @updatedAt @map("updated_at")
+  usuarioId     String          @map("usuario_id") @db.Char(40)
+  dispositivoId Int             @map("dispositivo_id") @db.Int
+  comodoId      String?         @map("comodo_id") @db.Char(40)
+  dispositivo   Dispositivo     @relation(fields: [dispositivoId], references: [id])
+  usuario       Usuario         @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  comodo        Comodo?         @relation(fields: [comodoId], references: [id], onDelete: SetNull)
+  automatizacao Automatizacao[]
+
+  @@map("unidade_dispositivo")
+}
+
+model Dispositivo {
+  id                     Int                  @id @default(autoincrement()) @db.Int
+  dispositivo            String               @db.VarChar(100)
+  categoriaDispositivoId Int                  @map("categoria_ dispositivo_id") @db.Int
+  categoriaDispositivo   CategoriaDispositivo @relation(fields: [categoriaDispositivoId], references: [id])
+  unidadeDispositivo     UnidadeDispositivo[]
+
+  @@map("dispositivo")
+}
+
+model CategoriaDispositivo {
+  id          Int           @id @default(autoincrement()) @db.Int
+  categoria   String        @db.VarChar(100)
+  dispositivo Dispositivo[]
+
+  @@map("categoria_dispositivo")
+}
+
+model Comodo {
+  id                 String               @id @default(uuid()) @db.Char(40)
+  descricao          String               @db.VarChar(100)
+  tipoComodoId       Int                  @map("tipo_comodo_id") @db.Int
+  usuarioId          String               @map("usuario_id") @db.Char(40)
+  tipoComodo         TipoComodo           @relation(fields: [tipoComodoId], references: [id])
+  usuario            Usuario              @relation(fields: [usuarioId], references: [id], onDelete: Cascade)
+  unidadeDispositivo UnidadeDispositivo[]
+  rotina             Rotina[]
+
+  @@map("comodo")
+}
+
+model TipoComodo {
+  id     Int      @id @default(autoincrement()) @db.Int
+  tipo   String   @db.VarChar(100)
+  comodo Comodo[]
+
+  @@map("tipo_comodo")
+}
+
+model Rotina {
+  id            String          @id @default(uuid()) @db.Char(40)
+  descricao     String          @db.VarChar(100)
+  habilitado    Boolean         @default(false)
+  diasDaSemana  Json            @default("{}") @map("dias_da_semana") @db.Json
+  horario       String?         @db.VarChar(5)
+  comodoId      String          @map("comodo_id") @db.Char(40)
+  comodo        Comodo          @relation(fields: [comodoId], references: [id], onDelete: Cascade)
+  automatizacao Automatizacao[]
+
+  @@map("rotina")
+}
+
+model Automatizacao {
+  id                   String             @id @default(uuid()) @db.Char(40)
+  rotinaId             String             @map("rotina_id") @db.Char(40)
+  unidadeDispositivoId String             @map("unidade_dispositivo_id") @db.Char(40)
+  status               Boolean            @default(false)
+  rotina               Rotina             @relation(fields: [rotinaId], references: [id], onDelete: Cascade)
+  unidadeDispositivo   UnidadeDispositivo @relation(fields: [unidadeDispositivoId], references: [id], onDelete: Cascade)
+
+  @@map("automatizacao")
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}

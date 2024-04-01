@@ -1,0 +1,79 @@
+version: "3.8"
+
+services:
+
+  backend:
+    container_name: smartnest_backend
+    command: sh -c "npm cache clean -f && npx prisma migrate dev && npx prisma db seed && npm run build && npm run start:prod"
+    restart: always
+    build:
+      context: ./backend
+    ports:
+      - ${PORT_BACK}:${PORT_BACK}
+    volumes:
+      - ./backend:/usr/src/app
+    env_file: ./backend/.env
+    depends_on:
+      - db
+
+  frontend:
+    container_name: smartnest_frontend
+    command: sh -c "npm cache clean -f && npm rebuild esbuild && npm start"
+    restart: on-failure
+    build:
+      context: ./frontend
+    ports:
+      - ${PORT_FRONT}:${PORT_FRONT}
+    volumes:
+      - ./frontend:/usr/src/app
+    env_file: ./frontend/.env
+
+  db:
+    image: mysql:8.0
+    container_name: smartnest_db
+    ports:
+      - ${PORT_MYSQL}:3306
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_db:/var/lib/mysql
+      - mysql_db_config:/etc/mysql
+
+  db_test:
+    image: mysql:8.0
+    container_name: smartnest_db_test
+    ports:
+      - ${PORT_MYSQL_TEST}:3306
+    environment:
+      - MYSQL_DATABASE=${MYSQL_DATABASE_TEST}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    volumes:
+      - mysql_test:/var/lib/mysql
+      - mysql_config_test:/etc/mysql
+
+  phpmyadmin:
+    image: phpmyadmin:latest
+    ports:
+      - ${PORT_PMA}:80
+    environment:
+      - PMA_ARBITRARY=1
+
+  homeassistant:
+      container_name: homeassistanttest
+      image: "ghcr.io/home-assistant/home-assistant:stable"
+      volumes:
+        - /config.homeassist:/config
+        - /etc/localtime:/etc/localtime:ro
+        - /run/dbus:/run/dbus:ro
+      restart: unless-stopped
+      ports: 
+        - 8123:8123
+      privileged: true
+      
+
+volumes:
+  mysql_db:
+  mysql_db_config:
+  mysql_test:
+  mysql_config_test:

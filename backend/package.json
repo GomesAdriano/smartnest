@@ -1,0 +1,56 @@
+{
+  "name": "smartnest-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "build": "tsc",
+    "start": "nodemon -e js,json,ts,yaml src/index.ts",
+    "start:prod": "node build/index.js",
+    "swagger": "ts-node ./src/swagger.ts",
+    "migrate": "docker exec -it smartnest_backend npx prisma migrate dev",
+    "seed": "docker exec -it smartnest_backend npx prisma db seed",
+    "test": "jest --coverage",
+    "format": "npx prettier --write src/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "axios": "^1.6.8",
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "date-fns": "^2.30.0",
+    "date-fns-tz": "^2.0.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "express-session": "^1.17.3",
+    "joi": "^17.12.0",
+    "node-schedule": "^2.1.1",
+    "prisma": "^5.11.0",
+    "swagger-ui-express": "^5.0.0",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/express-session": "^1.17.10",
+    "@types/node": "^20.11.5",
+    "@types/node-schedule": "^2.1.6",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@types/uuid": "^9.0.7",
+    "jest": "^29.7.0",
+    "nodemon": "^3.0.3",
+    "prettier": "3.2.4",
+    "swagger-autogen": "^2.23.7",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typescript": "^5.3.3"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seeds.ts"
+  }
+}

@@ -1,0 +1,23 @@
+.edit-icon {
+    background-color: #f0f0f0;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.card-body {
+    padding: 0;
+}
+.back-button {
+    background-color: #f6f6f6;
+    border: none;
+}
+.card {
+    min-width: max-content;
+    height: 200px;
+    padding: 20px;
+    width: 75%;
+}

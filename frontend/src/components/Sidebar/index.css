@@ -1,0 +1,84 @@
+header div.sidebar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 75px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px 30px;
+}
+
+header div.sidebar a {
+    color: #949494;
+    font-size: 1.4rem;
+}
+
+header div.sidebar a.active {
+    color: #13317e;
+    font-size: 1.3rem;
+}
+
+header div.sidebar div.up-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header div.sidebar div.up-content div.logo {
+    margin: 0;
+    padding: 0;
+    height: auto;
+}
+
+header div.sidebar div.up-content div.icons {
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 15px;
+}
+
+header div.sidebar div.up-content div.icons a:hover {
+    color: #13317e;
+}
+
+header div.sidebar div.down-content a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1000px) {
+    header div.sidebar {
+        position: fixed;
+        top: auto;
+        bottom: 0;
+        left: 0;
+        height: 75px;
+        width: 100vw;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    header div.sidebar div.up-content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        margin-right: 20px;
+    }
+
+    header div.sidebar div.up-content div.icons {
+        display: flex;
+        margin: 0;
+        margin-left: 10px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    header div.sidebar div.up-content div.icons a {
+        margin-left: 20px;
+    }
+}

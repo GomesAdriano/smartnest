@@ -1,0 +1,12 @@
+div.topo {
+    background-color: #13317e;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding-bottom: 10px;
+    height: 80px;
+}
+
+div.topo img.topo-background {
+    height: 100%;
+}

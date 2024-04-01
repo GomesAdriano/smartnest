@@ -1,0 +1,94 @@
+.borda-rot {
+    border: 0.1px solid #d6d6d6;
+    border-left: 10px solid;
+    min-width: max-content;
+    padding: 0.5rem;
+    background-color: white;
+    color: #949494;
+    border-radius: 3px;
+}
+
+.tipo-rotina {
+    font-size: 0.75rem;
+}
+.card-rotina {
+    height: 100px;
+}
+.label-action-button {
+    margin-left: 5px;
+}
+
+.card-rotina .fw-semibold {
+    max-width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 1498px) {
+    .card-rotina .fw-semibold {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 1374px) {
+    .card-rotina .fw-semibold {
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 1250px) {
+    .card-rotina .fw-semibold {
+        max-width: 120px;
+    }
+}
+
+@media (max-width: 1120px) {
+    .card-rotina .fw-semibold {
+        max-width: 150px;
+    }
+    .label-action-button {
+        display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    .card-rotina .fw-semibold {
+        max-width: 400px;
+    }
+}
+
+@media (max-width: 683px) {
+    .card-rotina .fw-semibold {
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 569px) {
+    .card-rotina {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+    }
+
+    .buttons-action-card {
+        flex-direction: row !important;
+        justify-content: start !important;
+        margin-top: 10px;
+    }
+
+    .buttons-action-card button {
+        width: 30px !important;
+        margin-left: 15px;
+    }
+}
+
+@media (max-width: 515px) {
+    .form-check-label {
+        display: none;
+    }
+
+    .card-rotina .fw-semibold {
+        max-width: 180px;
+    }
+}

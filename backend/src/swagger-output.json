@@ -1,0 +1,2448 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API SmartNest",
+        "description": "Documentação da API do projeto SmartNest.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://undefined:undefined/"
+        }
+    ],
+    "paths": {
+        "/api/auth/": {
+            "post": {
+                "tags": ["Auth"],
+                "summary": "Cadastra os usuários no banco de dados.",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "email": {
+                                        "example": "any"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Auth"],
+                "summary": "Autenticação de usuários.",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "in": {
+                                        "example": "any"
+                                    },
+                                    "schema": {
+                                        "example": "any"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Auth"],
+                "summary": "Logout de usuários.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/usuario/": {
+            "get": {
+                "tags": ["Usuário"],
+                "summary": "Listagem de Usuários.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemUsuarioDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemUsuarioDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/usuario/{id}": {
+            "get": {
+                "tags": ["Usuário"],
+                "summary": "Recupera dados de um usuário específico.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do usuário desejado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UsuarioDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UsuarioDto"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/categoria-dispositivo/": {
+            "get": {
+                "tags": ["Categoria de Dispositivo"],
+                "summary": "Listagem de categorias de dispositivos.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemCategoriaDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemCategoriaDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/categoria-dispositivo/{id}": {
+            "get": {
+                "tags": ["Categoria de Dispositivo"],
+                "summary": "Recupera dados de um categoria de dispositivos específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da categoria desejada"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoriaDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CategoriaDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dispositivo/": {
+            "get": {
+                "tags": ["Dispositivo Predefinido"],
+                "summary": "Listagem de dispositivos predefinidos.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemDispositivoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemDispositivoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dispositivo/{id}": {
+            "get": {
+                "tags": ["Dispositivo Predefinido"],
+                "summary": "Recupera dados de um dispositivo específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do dispositivo desejado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DispositivoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DispositivoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/dispositivo/categoria/{id}": {
+            "get": {
+                "tags": ["Dispositivo Predefinido"],
+                "summary": "Listagem de dispositivos predefinidos de uma categoria especifica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da categoria desejada"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemDispositivoCategoriaDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemDispositivoCategoriaDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/tipo-comodo/": {
+            "get": {
+                "tags": ["Tipo de Cômodo"],
+                "summary": "Listagem de tipo de comodo.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTipoComodoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTipoComodoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/tipo-comodo/{id}": {
+            "get": {
+                "tags": ["Tipo de Cômodo"],
+                "summary": "Recupera dados de um tipo de cômodo específico.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do tipo cômodo desejado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TipoComodoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TipoComodoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/comodo/": {
+            "get": {
+                "tags": ["Cômodo"],
+                "summary": "Listagem de comodos do usuários",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodosComodosDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodosComodosDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Cômodo"],
+                "summary": "Cadastra os cômodos dos usuários no banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/CadastroComodoDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/comodo/{id}": {
+            "get": {
+                "tags": ["Cômodo"],
+                "summary": "Recupera dados de um cômodo específico.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do cômodo desejado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ComodoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ComodoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Cômodo"],
+                "summary": "Altera os dados de um cômodo específico.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do cômodo"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/EditarComodoDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Cômodo"],
+                "summary": "Apaga um cômodo do banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do cômodo"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/comodo/add-rmv-unidade-dispositivo/{comodoId}": {
+            "put": {
+                "tags": ["Cômodo"],
+                "summary": "Adiciona ou remove uma unidade de dispositivo em um cômodo específicco.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "comodoId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do cômodo"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "acao": {
+                                        "example": "any"
+                                    },
+                                    "dispId": {
+                                        "example": "any"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/unidade-dispositivo/": {
+            "get": {
+                "tags": ["Unidade de Dispositivo"],
+                "summary": "Listagem das unidades de dispositivos dos usuários.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasUnidadeDispositivoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasUnidadeDispositivoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "post": {
+                "tags": ["Unidade de Dispositivo"],
+                "summary": "Cadastra as unidades de dispositivos dos usuários no banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/CadastroUnidadeDispositivoDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/unidade-dispositivo/sem-comodo": {
+            "get": {
+                "tags": ["Unidade de Dispositivo"],
+                "summary": "Listagem das unidades de dispositivos que não estão associadas há um cômodo.",
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasUnidadeDispositivoSemComodoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasUnidadeDispositivoSemComodoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/unidade-dispositivo/{id}": {
+            "get": {
+                "tags": ["Unidade de Dispositivo"],
+                "summary": "Recupera dados de uma unidade de dispositivo específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da unidade desejada"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnidadeDispositivoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UnidadeDispositivoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Unidade de Dispositivo"],
+                "summary": "Altera os dados de uma unidade de dispositivo específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da unidade de dispositivo"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/EditarUnidadeDispositivoDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Unidade de Dispositivo"],
+                "summary": "Apaga uma unidade de dispositivo do banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da unidade de dispositivo"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/unidade-dispositivo/status/{id}": {
+            "put": {
+                "tags": ["Unidade de Dispositivo"],
+                "summary": "Altera o dado de status de uma unidade de dispositivo específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da unidade de dispositivo"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/EditarStatusUnidadeDispositivoDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/comodo/{id}": {
+            "get": {
+                "tags": ["Rotina"],
+                "summary": "Listagem de rotinas de um cômodo do usuário",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID do comodo desejado"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasRotinasComodoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasRotinasComodoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/{id}": {
+            "get": {
+                "tags": ["Rotina"],
+                "summary": "Recupera dados de uma rotina específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da rotina desejada"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "in": "body",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RotinaDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RotinaDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Rotina"],
+                "summary": "Apaga uma rotina e suas automatizações do banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da rotina"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/": {
+            "post": {
+                "tags": ["Rotina"],
+                "summary": "Cadastra rotina no cômodo do usuário no banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/CadastroRotinaDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/descricao/{id}": {
+            "put": {
+                "tags": ["Rotina"],
+                "summary": "Altera a descrição de uma rotina específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da rotina desejada"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/EditarDescricaoRotinaDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/dia-semana/{id}": {
+            "put": {
+                "tags": ["Rotina"],
+                "summary": "Altera o dia da semana de uma rotina específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da rotina desejada"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/EditarDiaSemanaRotinaDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/horario/{id}": {
+            "put": {
+                "tags": ["Rotina"],
+                "summary": "Altera o horário de uma rotina específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da rotina desejada"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/EditarHorarioRotinaDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/executar": {
+            "post": {
+                "tags": ["Rotina"],
+                "summary": "Executa as automatizações das rotinas dos cômodos dos usuários.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/ExecutaRotinaDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/rotina/habilitar/{id}": {
+            "put": {
+                "tags": ["Rotina"],
+                "summary": "Habilita ou desabilita uma rotina específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da rotina desejada"
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/HabilitarRotinaDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/automatizacao/rotina/{id}": {
+            "get": {
+                "tags": ["Automatização"],
+                "summary": "Listagem de automatizacoes de uma rotina do usuário",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da rotina desejada"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasAutomatizacoesDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListagemTodasAutomatizacoesDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/automatizacao/{id}": {
+            "get": {
+                "tags": ["Automatização"],
+                "summary": "Recupera dados de uma automatizacao específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da automatizacao desejada"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "in": "body",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutomatizacaoDto"
+                                }
+                            },
+                            "application/xml": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AutomatizacaoDto"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "put": {
+                "tags": ["Automatização"],
+                "summary": "Altera os dados de uma automatizacao específica.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/EditarAutomatizacaoDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": ["Automatização"],
+                "summary": "Apaga uma automatização do banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "ID da automatização"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/automatizacao/": {
+            "post": {
+                "tags": ["Automatização"],
+                "summary": "Cadastra automatização da rotina no banco de dados.",
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/components/schemas/CadastroAutomatizacaoDto"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/home-assistant/": {
+            "get": {
+                "description": "",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        },
+        "/api/home-assistant/state/{entity_id}": {
+            "put": {
+                "description": "",
+                "parameters": [
+                    {
+                        "name": "entity_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "state": {
+                                        "example": "any"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "CadastroUsuarioDto": {
+                "type": "object",
+                "properties": {
+                    "nome": {
+                        "type": "string",
+                        "example": "Maria Eduarda"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "maria@icomp.ufam.edu.br"
+                    },
+                    "senha": {
+                        "type": "string",
+                        "example": "123456"
+                    }
+                },
+                "xml": {
+                    "name": "CadastroUsuarioDto"
+                }
+            },
+            "LoginDto": {
+                "type": "object",
+                "properties": {
+                    "email": {
+                        "type": "string",
+                        "example": "maria@icomp.ufam.edu.br"
+                    },
+                    "senha": {
+                        "type": "string",
+                        "example": "12345678"
+                    }
+                },
+                "xml": {
+                    "name": "LoginDto"
+                }
+            },
+            "UsuarioDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "bf95275d-b49e-4bf7-adb1-7d2a8908b86c"
+                    },
+                    "nome": {
+                        "type": "string",
+                        "example": "Liz"
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "Maria51@sapo.pt"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "example": "2024-01-24T00:07:47.517Z"
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "example": "2024-01-24T00:07:47.517Z"
+                    }
+                },
+                "xml": {
+                    "name": "UsuarioDto"
+                }
+            },
+            "ListagemUsuarioDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "usuariodto"
+                    },
+                    "$ref": "#/components/schemas/UsuarioDto"
+                },
+                "xml": {
+                    "name": "ListagemUsuarioDto"
+                }
+            },
+            "CategoriaDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "example": 1
+                    },
+                    "categoria": {
+                        "type": "string",
+                        "example": "Iluminação"
+                    }
+                },
+                "xml": {
+                    "name": "CategoriaDto"
+                }
+            },
+            "ListagemCategoriaDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "categoriadto"
+                    },
+                    "$ref": "#/components/schemas/CategoriaDto"
+                },
+                "xml": {
+                    "name": "ListagemCategoriaDto"
+                }
+            },
+            "DispositivoDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "example": 1
+                    },
+                    "dispositivo": {
+                        "type": "string",
+                        "example": "Lâmpada"
+                    },
+                    "categoriaDispositivo": {
+                        "xml": {
+                            "name": "categoriadto"
+                        },
+                        "$ref": "#/components/schemas/CategoriaDto"
+                    }
+                },
+                "xml": {
+                    "name": "DispositivoDto"
+                }
+            },
+            "ListagemDispositivoDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "dispositivodto"
+                    },
+                    "$ref": "#/components/schemas/DispositivoDto"
+                },
+                "xml": {
+                    "name": "ListagemDispositivoDto"
+                }
+            },
+            "ListagemDispositivoCategoriaDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "dispositivodto"
+                    },
+                    "$ref": "#/components/schemas/DispositivoDto"
+                },
+                "xml": {
+                    "name": "ListagemDispositivoCategoriaDto"
+                }
+            },
+            "TipoComodoDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "number",
+                        "example": 1
+                    },
+                    "tipo": {
+                        "type": "string",
+                        "example": "Sala"
+                    }
+                },
+                "xml": {
+                    "name": "TipoComodoDto"
+                }
+            },
+            "ListagemTipoComodoDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "tipocomododto"
+                    },
+                    "$ref": "#/components/schemas/TipoComodoDto"
+                },
+                "xml": {
+                    "name": "ListagemTipoComodoDto"
+                }
+            },
+            "ComodoDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "1a680fbc-f18a-4838-871b-19944fa144b0"
+                    },
+                    "descricao": {
+                        "type": "string",
+                        "example": "Sala de Estar"
+                    },
+                    "tipoComodo": {
+                        "xml": {
+                            "name": "tipocomododto"
+                        },
+                        "$ref": "#/components/schemas/TipoComodoDto"
+                    },
+                    "unidadeDispositivo": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "716b99ff-2fe9-47ef-8658-53e5abb7d9fb"
+                                },
+                                "descricao": {
+                                    "type": "string",
+                                    "example": "earum reiciendis magni"
+                                },
+                                "status": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "createdAt": {
+                                    "type": "string",
+                                    "example": "2024-02-19T22:35:23.320Z"
+                                },
+                                "updatedAt": {
+                                    "type": "string",
+                                    "example": "2024-02-21T03:30:36.708Z"
+                                },
+                                "dispositivo": {
+                                    "xml": {
+                                        "name": "dispositivodto"
+                                    },
+                                    "$ref": "#/components/schemas/DispositivoDto"
+                                }
+                            }
+                        }
+                    },
+                    "rotina": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "43452524-5c44-4f33-a64d-4afc7ae29550"
+                                },
+                                "descricao": {
+                                    "type": "string",
+                                    "example": "Cafezinho da Manha"
+                                },
+                                "habilitado": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "diasDaSemana": {
+                                    "type": "object",
+                                    "properties": {
+                                        "segunda": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "terca": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "quarta": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "quinta": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "sexta": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "sabado": {
+                                            "type": "boolean",
+                                            "example": false
+                                        },
+                                        "domingo": {
+                                            "type": "boolean",
+                                            "example": false
+                                        }
+                                    }
+                                },
+                                "horario": {
+                                    "type": "string",
+                                    "example": "10:00"
+                                },
+                                "automatizacao": {
+                                    "type": "array",
+                                    "items": {
+                                        "xml": {
+                                            "name": "automatizacaodto"
+                                        },
+                                        "$ref": "#/components/schemas/AutomatizacaoDto"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "ComodoDto"
+                }
+            },
+            "ListagemTodosComodosDevDto": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "example": "1a680fbc-f18a-4838-871b-19944fa144b0"
+                        },
+                        "descricao": {
+                            "type": "string",
+                            "example": "Sala de Estar"
+                        },
+                        "tipoComodo": {
+                            "xml": {
+                                "name": "tipocomododto"
+                            },
+                            "$ref": "#/components/schemas/TipoComodoDto"
+                        },
+                        "usuario": {
+                            "xml": {
+                                "name": "usuariodto"
+                            },
+                            "$ref": "#/components/schemas/UsuarioDto"
+                        },
+                        "unidadeDispositivo": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "example": "716b99ff-2fe9-47ef-8658-53e5abb7d9fb"
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "example": "earum reiciendis magni"
+                                    },
+                                    "status": {
+                                        "type": "boolean",
+                                        "example": false
+                                    },
+                                    "createdAt": {
+                                        "type": "string",
+                                        "example": "2024-02-19T22:35:23.320Z"
+                                    },
+                                    "updatedAt": {
+                                        "type": "string",
+                                        "example": "2024-02-21T03:30:36.708Z"
+                                    },
+                                    "dispositivo": {
+                                        "xml": {
+                                            "name": "dispositivodto"
+                                        },
+                                        "$ref": "#/components/schemas/DispositivoDto"
+                                    }
+                                }
+                            }
+                        },
+                        "rotina": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "example": "43452524-5c44-4f33-a64d-4afc7ae29550"
+                                    },
+                                    "descricao": {
+                                        "type": "string",
+                                        "example": "Cafezinho da Manha"
+                                    },
+                                    "habilitado": {
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "diasDaSemana": {
+                                        "type": "object",
+                                        "properties": {
+                                            "segunda": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "terca": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "quarta": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "quinta": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "sexta": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "sabado": {
+                                                "type": "boolean",
+                                                "example": false
+                                            },
+                                            "domingo": {
+                                                "type": "boolean",
+                                                "example": false
+                                            }
+                                        }
+                                    },
+                                    "horario": {
+                                        "type": "string",
+                                        "example": "10:00"
+                                    },
+                                    "automatizacao": {
+                                        "type": "array",
+                                        "items": {
+                                            "xml": {
+                                                "name": "automatizacaodto"
+                                            },
+                                            "$ref": "#/components/schemas/AutomatizacaoDto"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "ListagemTodosComodosDevDto"
+                }
+            },
+            "ListagemTodosComodosDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "comododto"
+                    },
+                    "$ref": "#/components/schemas/ComodoDto"
+                },
+                "xml": {
+                    "name": "ListagemTodosComodosDto"
+                }
+            },
+            "CadastroComodoDto": {
+                "type": "object",
+                "properties": {
+                    "descricao": {
+                        "type": "string",
+                        "example": "Sala de Estar"
+                    },
+                    "tipoComodoId": {
+                        "type": "number",
+                        "example": 1
+                    }
+                },
+                "xml": {
+                    "name": "CadastroComodoDto"
+                }
+            },
+            "EditarComodoDto": {
+                "xml": {
+                    "name": "EditarComodoDto"
+                },
+                "$ref": "#/components/schemas/CadastroComodoDto"
+            },
+            "AddRmvUnidadeDispositivoComodoDto": {
+                "type": "object",
+                "properties": {
+                    "acao": {
+                        "type": "string",
+                        "example": "add | rmv"
+                    },
+                    "dispId": {
+                        "type": "string",
+                        "example": "08cd1e12-c38b-4d89-943a-5f3c781b660b"
+                    }
+                },
+                "xml": {
+                    "name": "AddRmvUnidadeDispositivoComodoDto"
+                }
+            },
+            "UnidadeDispositivoDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "08cd1e12-c38b-4d89-943a-5f3c781b660b"
+                    },
+                    "descricao": {
+                        "type": "string",
+                        "example": "Lâmpada do Quarto"
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "dispositivo": {
+                        "xml": {
+                            "name": "dispositivodto"
+                        },
+                        "$ref": "#/components/schemas/DispositivoDto"
+                    },
+                    "comodo": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "example": "1a680fbc-f18a-4838-871b-19944fa144b0"
+                            },
+                            "descricao": {
+                                "type": "string",
+                                "example": "Sala de Estar"
+                            },
+                            "tipoComodo": {
+                                "xml": {
+                                    "name": "tipocomododto"
+                                },
+                                "$ref": "#/components/schemas/TipoComodoDto"
+                            }
+                        }
+                    },
+                    "automatizacao": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "559dcc23-1a37-4b09-9f5a-68ff3840cf86"
+                                },
+                                "status": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "rotina": {
+                                    "type": "object",
+                                    "properties": {
+                                        "id": {
+                                            "type": "string",
+                                            "example": "43452524-5c44-4f33-a64d-4afc7ae29550"
+                                        },
+                                        "descricao": {
+                                            "type": "string",
+                                            "example": "expedita accusantium itaque"
+                                        },
+                                        "habilitado": {
+                                            "type": "boolean",
+                                            "example": true
+                                        },
+                                        "diasDaSemana": {
+                                            "type": "object",
+                                            "properties": {
+                                                "segunda": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "terca": {
+                                                    "type": "boolean",
+                                                    "example": true
+                                                },
+                                                "quarta": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "quinta": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "sexta": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "sabado": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "domingo": {
+                                                    "type": "boolean",
+                                                    "example": false
+                                                }
+                                            }
+                                        },
+                                        "horario": {
+                                            "type": "string",
+                                            "example": "10:00"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "UnidadeDispositivoDto"
+                }
+            },
+            "ListagemTodasUnidadeDispositivoDevDto": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "example": "08cd1e12-c38b-4d89-943a-5f3c781b660b"
+                        },
+                        "descricao": {
+                            "type": "string",
+                            "example": "Lâmpada do Quarto"
+                        },
+                        "status": {
+                            "type": "boolean",
+                            "example": false
+                        },
+                        "createdAt": {
+                            "type": "string",
+                            "example": "2024-01-28T02:48:59.318Z"
+                        },
+                        "updatedAt": {
+                            "type": "string",
+                            "example": "2024-01-28T02:48:59.318Z"
+                        },
+                        "usuario": {
+                            "xml": {
+                                "name": "usuariodto"
+                            },
+                            "$ref": "#/components/schemas/UsuarioDto"
+                        },
+                        "dispositivo": {
+                            "xml": {
+                                "name": "dispositivodto"
+                            },
+                            "$ref": "#/components/schemas/DispositivoDto"
+                        },
+                        "comodo": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "1a680fbc-f18a-4838-871b-19944fa144b0"
+                                },
+                                "descricao": {
+                                    "type": "string",
+                                    "example": "Sala de Estar"
+                                },
+                                "tipoComodo": {
+                                    "xml": {
+                                        "name": "tipocomododto"
+                                    },
+                                    "$ref": "#/components/schemas/TipoComodoDto"
+                                }
+                            }
+                        },
+                        "automatizacao": {
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "properties": {
+                                    "id": {
+                                        "type": "string",
+                                        "example": "559dcc23-1a37-4b09-9f5a-68ff3840cf86"
+                                    },
+                                    "status": {
+                                        "type": "boolean",
+                                        "example": false
+                                    },
+                                    "rotina": {
+                                        "type": "object",
+                                        "properties": {
+                                            "id": {
+                                                "type": "string",
+                                                "example": "43452524-5c44-4f33-a64d-4afc7ae29550"
+                                            },
+                                            "descricao": {
+                                                "type": "string",
+                                                "example": "expedita accusantium itaque"
+                                            },
+                                            "habilitado": {
+                                                "type": "boolean",
+                                                "example": true
+                                            },
+                                            "diasDaSemana": {
+                                                "type": "object",
+                                                "properties": {
+                                                    "segunda": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "terca": {
+                                                        "type": "boolean",
+                                                        "example": true
+                                                    },
+                                                    "quarta": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "quinta": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "sexta": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "sabado": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    },
+                                                    "domingo": {
+                                                        "type": "boolean",
+                                                        "example": false
+                                                    }
+                                                }
+                                            },
+                                            "horario": {
+                                                "type": "string",
+                                                "example": "10:00"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "ListagemTodasUnidadeDispositivoDevDto"
+                }
+            },
+            "ListagemTodasUnidadeDispositivoDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "unidadedispositivodto"
+                    },
+                    "$ref": "#/components/schemas/UnidadeDispositivoDto"
+                },
+                "xml": {
+                    "name": "ListagemTodasUnidadeDispositivoDto"
+                }
+            },
+            "ListagemTodasUnidadeDispositivoSemComodoDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "unidadedispositivodto"
+                    },
+                    "$ref": "#/components/schemas/UnidadeDispositivoDto"
+                },
+                "xml": {
+                    "name": "ListagemTodasUnidadeDispositivoSemComodoDto"
+                }
+            },
+            "CadastroUnidadeDispositivoDto": {
+                "type": "object",
+                "properties": {
+                    "descricao": {
+                        "type": "string",
+                        "example": "Lampada da Sala"
+                    },
+                    "dispositivoId": {
+                        "type": "number",
+                        "example": 3
+                    }
+                },
+                "xml": {
+                    "name": "CadastroUnidadeDispositivoDto"
+                }
+            },
+            "EditarUnidadeDispositivoDto": {
+                "xml": {
+                    "name": "EditarUnidadeDispositivoDto"
+                },
+                "$ref": "#/components/schemas/CadastroUnidadeDispositivoDto"
+            },
+            "EditarStatusUnidadeDispositivoDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "xml": {
+                    "name": "EditarStatusUnidadeDispositivoDto"
+                }
+            },
+            "RotinaDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "43452524-5c44-4f33-a64d-4afc7ae29550"
+                    },
+                    "descricao": {
+                        "type": "string",
+                        "example": "expedita accusantium itaque"
+                    },
+                    "habilitado": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "diasDaSemana": {
+                        "type": "object",
+                        "properties": {
+                            "segunda": {
+                                "type": "boolean",
+                                "example": false
+                            },
+                            "terca": {
+                                "type": "boolean",
+                                "example": true
+                            },
+                            "quarta": {
+                                "type": "boolean",
+                                "example": false
+                            },
+                            "quinta": {
+                                "type": "boolean",
+                                "example": false
+                            },
+                            "sexta": {
+                                "type": "boolean",
+                                "example": false
+                            },
+                            "sabado": {
+                                "type": "boolean",
+                                "example": false
+                            },
+                            "domingo": {
+                                "type": "boolean",
+                                "example": false
+                            }
+                        }
+                    },
+                    "horario": {
+                        "type": "string",
+                        "example": "10:00"
+                    },
+                    "comodo": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "example": "1a680fbc-f18a-4838-871b-19944fa144b0"
+                            },
+                            "descricao": {
+                                "type": "string",
+                                "example": "Sala de Estar"
+                            },
+                            "tipoComodo": {
+                                "xml": {
+                                    "name": "tipocomododto"
+                                },
+                                "$ref": "#/components/schemas/TipoComodoDto"
+                            }
+                        }
+                    },
+                    "automatizacao": {
+                        "type": "array",
+                        "items": {
+                            "xml": {
+                                "name": "automatizacaodto"
+                            },
+                            "$ref": "#/components/schemas/AutomatizacaoDto"
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "RotinaDto"
+                }
+            },
+            "ListagemTodasRotinasDevDto": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "type": "string",
+                            "example": "43452524-5c44-4f33-a64d-4afc7ae29550"
+                        },
+                        "descricao": {
+                            "type": "string",
+                            "example": "expedita accusantium itaque"
+                        },
+                        "habilitado": {
+                            "type": "boolean",
+                            "example": true
+                        },
+                        "diasDaSemana": {
+                            "type": "object",
+                            "properties": {
+                                "segunda": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "terca": {
+                                    "type": "boolean",
+                                    "example": true
+                                },
+                                "quarta": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "quinta": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "sexta": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "sabado": {
+                                    "type": "boolean",
+                                    "example": false
+                                },
+                                "domingo": {
+                                    "type": "boolean",
+                                    "example": false
+                                }
+                            }
+                        },
+                        "horario": {
+                            "type": "string",
+                            "example": "10:00"
+                        },
+                        "comodo": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string",
+                                    "example": "1a680fbc-f18a-4838-871b-19944fa144b0"
+                                },
+                                "descricao": {
+                                    "type": "string",
+                                    "example": "Sala de Estar"
+                                },
+                                "tipoComodo": {
+                                    "xml": {
+                                        "name": "tipocomododto"
+                                    },
+                                    "$ref": "#/components/schemas/TipoComodoDto"
+                                },
+                                "usuario": {
+                                    "xml": {
+                                        "name": "usuariodto"
+                                    },
+                                    "$ref": "#/components/schemas/UsuarioDto"
+                                }
+                            }
+                        },
+                        "automatizacao": {
+                            "type": "array",
+                            "items": {
+                                "xml": {
+                                    "name": "automatizacaodto"
+                                },
+                                "$ref": "#/components/schemas/AutomatizacaoDto"
+                            }
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "ListagemTodasRotinasDevDto"
+                }
+            },
+            "ListagemTodasRotinasComodoDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "rotinadto"
+                    },
+                    "$ref": "#/components/schemas/RotinaDto"
+                },
+                "xml": {
+                    "name": "ListagemTodasRotinasComodoDto"
+                }
+            },
+            "CadastroRotinaDto": {
+                "type": "object",
+                "properties": {
+                    "descricao": {
+                        "type": "string",
+                        "example": "Rotina Café da Manhã"
+                    },
+                    "comodoId": {
+                        "type": "string",
+                        "example": "4f0584e9-f5ac-4c17-bc12-540ee42f6878"
+                    }
+                },
+                "xml": {
+                    "name": "CadastroRotinaDto"
+                }
+            },
+            "HabilitarRotinaDto": {
+                "type": "object",
+                "properties": {
+                    "habilitado": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "xml": {
+                    "name": "HabilitarRotinaDto"
+                }
+            },
+            "EditarDescricaoRotinaDto": {
+                "type": "object",
+                "properties": {
+                    "descricao": {
+                        "type": "string",
+                        "example": "Café da Manhã"
+                    }
+                },
+                "xml": {
+                    "name": "EditarDescricaoRotinaDto"
+                }
+            },
+            "EditarHorarioRotinaDto": {
+                "type": "object",
+                "properties": {
+                    "horario": {
+                        "type": "string",
+                        "example": "10:00 | null"
+                    }
+                },
+                "xml": {
+                    "name": "EditarHorarioRotinaDto"
+                }
+            },
+            "EditarDiaSemanaRotinaDto": {
+                "type": "object",
+                "properties": {
+                    "segunda": {
+                        "type": "boolean",
+                        "example": true
+                    },
+                    "terca": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "quarta": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "quinta": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "sexta": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "abado": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "domingo": {
+                        "type": "boolean",
+                        "example": false
+                    }
+                },
+                "xml": {
+                    "name": "EditarDiaSemanaRotinaDto"
+                }
+            },
+            "ExecutaRotinaDto": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "unidadeDispositivoId": {
+                            "type": "string",
+                            "example": "f6a81893-3b7d-4bce-8b87-77b263f83656"
+                        },
+                        "status": {
+                            "type": "boolean",
+                            "example": true
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "ExecutaRotinaDto"
+                }
+            },
+            "ListagemTodasAutomatizacoesDto": {
+                "type": "array",
+                "items": {
+                    "xml": {
+                        "name": "automatizacaodto"
+                    },
+                    "$ref": "#/components/schemas/AutomatizacaoDto"
+                },
+                "xml": {
+                    "name": "ListagemTodasAutomatizacoesDto"
+                }
+            },
+            "AutomatizacaoDto": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "example": "559dcc23-1a37-4b09-9f5a-68ff3840cf86"
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "example": false
+                    },
+                    "unidadeDispositivo": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string",
+                                "example": "f6a81893-3b7d-4bce-8b87-77b263f83656"
+                            },
+                            "descricao": {
+                                "type": "string",
+                                "example": "assumenda sunt autem"
+                            },
+                            "status": {
+                                "type": "boolean",
+                                "example": false
+                            },
+                            "createdAt": {
+                                "type": "string",
+                                "example": "2024-02-23T07:52:44.462Z"
+                            },
+                            "updatedAt": {
+                                "type": "string",
+                                "example": "2024-02-23T15:00:45.475Z"
+                            },
+                            "dispositivo": {
+                                "xml": {
+                                    "name": "dispositivodto"
+                                },
+                                "$ref": "#/components/schemas/DispositivoDto"
+                            }
+                        }
+                    }
+                },
+                "xml": {
+                    "name": "AutomatizacaoDto"
+                }
+            },
+            "CadastroAutomatizacaoDto": {
+                "type": "object",
+                "properties": {
+                    "rotinaId": {
+                        "type": "string",
+                        "example": "43452524-5c44-4f33-a64d-4afc7ae29550"
+                    },
+                    "unidadeDispositivoId": {
+                        "type": "string",
+                        "example": "716b99ff-2fe9-47ef-8658-53e5abb7d9fb"
+                    },
+                    "status": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "xml": {
+                    "name": "CadastroAutomatizacaoDto"
+                }
+            },
+            "EditarAutomatizacaoDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "boolean",
+                        "example": true
+                    }
+                },
+                "xml": {
+                    "name": "EditarAutomatizacaoDto"
+                }
+            }
+        }
+    }
+}
